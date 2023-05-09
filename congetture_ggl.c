@@ -288,32 +288,6 @@ void legendre(void)
     }
 }
 
-/* Funzione che genera la sequenza dei primi 10 numeri primi */
-int generaprimi(int primo)
-{
-    /* Dichiarazione delle variabili locali alla funzione */
-    int primover,   /* Lavoro: Numero primo controllato */
-        esito;      /* Lavoro: */
-        
-    /* Calcolo dei numeri primi */
-    do
-    {
-        /* Invocazione della funzione per verificare che il numero sia primo */
-        esito = numprim(primo);
-        
-        /* Controllo se il numero è primo */
-        if (esito == 1)
-        {
-            primover = primo; /* ho verificato che è primo */
-        }
-        
-	primo++;  /* se il numero non è primo controllo il prossimo numero */
-        
-    } while(esito != 1);
-    
-    return(primover);
-}
-
 /* Definizione della funzione per controllare se un numero è primo */
 int numprim(int n)  /* Input: Numero da controllare                */
 {
@@ -328,6 +302,5 @@ int numprim(int n)  /* Input: Numero da controllare                */
 			esito = 0;      /* Il numero non è primo */
 		cdiv++;
 	}
-
 return(esito);
 }
