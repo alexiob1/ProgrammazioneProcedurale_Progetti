@@ -102,13 +102,13 @@ void gilbreath()
     int n,			         /* Input:  Numero inserito dall'utente 		 */
 	    esito_lettura,       /* Lavoro: Esito della scanf 			         */
 	    acquisizione_errata, /* Lavoro: Esito complessivo della scanf 	     */
-	    dim;                 /* Lavoro: Dimensione dell'array di primi       */
+	    dim,                 /* Lavoro: Dimensione dell'array di primi       */
 	    i,			         /* Lavoro: Contatore delle sequenze da generare */
 	    j = 0, 		         /* Lavoro: Contatore dei numeri delle sequenze  */
 	    num, 		         /* Lavoro: Numeri primi della sequenza 	     */
 	    esito;		         /* Lavoro: Controllo del numero primo           */
     int *primi;		         /* Output: Sequenza dei numeri primi		     */
-	int differenze[10];	     /* Output: Sequenze generate successivamente	 */
+	int successive[10];	     /* Output: Sequenze generate successivamente	 */
 
 	/* Richiesta del numero di sequenze da generare all'utente */
 	do
@@ -125,10 +125,8 @@ void gilbreath()
 	}
 	while(acquisizione_errata);
 
-    /* Calcolo della dimensione dell'array */
-    dim = 10 + n;
-    
     /* Allocazione dell'array dinamico */
+    dim = 10 + n;
     primi = malloc(dim*sizeof(int));
     
     /* Calcolo delle sequenze */
@@ -142,12 +140,14 @@ void gilbreath()
             {
     		    /* Invocazione della funzione per verificare che il numero sia primo */
             	esito = numprim(num);
-            
-            	/* Controllo se il numero è primo */
+
             	if (esito == 1)
             	{
         			primi[j] = num;
-        			printf("%d ", primi[j]);
+        			
+        			if(j < 10)
+        			    printf("%d ", primi[j]);
+
         			j = j + 1;
             	}
     	     }
@@ -170,21 +170,21 @@ void gilbreath()
     					break;
     			}
     		}
-
-    		j = 0;
-    		while (j < 10) 
+    		
+            /* Generazione della sequenza successiva */
+    		for (j = 0; j < dim; j++) 
             {
-                differenze[j] = abs(primi[j] - primi[j + 1]);
-                printf("%d ", differenze[j]);
-    			j++;
+                successive[j] = abs(primi[j] - primi[j + 1]);
+                
+                if(j < 10)
+                    printf("%d ", successive[j]);
+    			
             }
             printf("\n");
     
     		/* Copio la sequenza appena generata in primi */
-            for (j = 0; j < 10; j++) 
-            {
-                primi[j] = differenze[j] + 1;
-            }
+            for (j = 0; j < dim; j++) 
+                primi[j] = successive[j] + 1;
         }
     }
 }
@@ -194,12 +194,12 @@ void goldbach(void)
 {
     /* Dichiarazione delle variabili locali alla funzione */
 	int n,	                 /* Input:  Numero inserito dall'utente         */
-	    i,                   /* Lavoro: Contatore del primo numero primo    */
-	    j,                   /* Lavoro: Contatore del secondo numero primo  */
-	    k,                   /* Lavoro: Contatore del terzo numero primo    */
 	    esito_lettura,       /* Lavoro: Esito della scanf                   */
         acquisizione_errata, /* Lavoro: Esito complessivo della scanf       */
-	    esito;               /* Lavoro: Controllo del numero primo          */
+	    esito,               /* Lavoro: Controllo del numero primo          */
+	    i,                   /* Output: Primo numero primo trovato          */
+	    j,                   /* Output: Secondo numero primo trovato        */
+	    k;                   /* Output: Terzo numero primo trovato          */
 	
 	/* Acquisizione del numero inserito dall'utente */
 	do
@@ -249,8 +249,8 @@ void legendre(void)
         quadrato,            /* Lavoro: Quadrato di n                       */
         succquadr,           /* Lavoro: Quadrato del successivo di n        */
         esito,               /* Lavoro: Esito della funzione "numprim"      */
-        i,                   /* Lavoro/Output: Contatore e numero trovato   */
-        j;
+        i,                   /* Lavoro: Contatore dei numeri primi          */
+        numero;              /* Output: Numero primo trovato                */
     
     /* Richiesta del numero da controllare all'utente */
     do
@@ -272,24 +272,19 @@ void legendre(void)
     succquadr = pow((n+1), 2);
     
     /* Ricerca del numero compreso tra n ed il suo successivo */
-    for(j = 0; j == 0; )
+    for(i = quadrato+1; esito != 0; i++)
     {
-        for(i = quadrato+1; ((i > quadrato) && (i < succquadr)); i++)
-        {
-            /* Invocazione della funzione del numero primo */
-            esito = numprim(i);
-    		
-    		/* Controllo che il numero sia primo */
-    		if (esito == 1)
-    		{
-    		    j = i;
-    		    i = succquadr;
-    		}
-        }
-        printf("Il numero primo compreso tra %d e %d è %d \n",
-    		           quadrato, succquadr, j);
-    		           
+        /* Invocazione della funzione del numero primo */
+        esito = numprim(i);
+        
+    	/* Controllo che il numero sia primo */
+    	if (esito == 1)
+    	    numero = i;
     }
+    
+    /* Stampa del risultato */
+    printf("Il numero primo compreso tra %d e %d è %d \n",
+    	   quadrato, succquadr, numero);
 }
 
 /* Definizione della funzione per controllare se un numero è primo */
@@ -306,6 +301,5 @@ int numprim(int n)  /* Input: Numero da controllare                */
 			esito = 0;      /* Il numero non è primo */
 		cdiv++;
 	}
-
 return(esito);
 }
