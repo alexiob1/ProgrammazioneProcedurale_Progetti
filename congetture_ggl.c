@@ -108,7 +108,7 @@ void gilbreath()
 	    num, 		         /* Lavoro: Numeri primi della sequenza 	     */
 	    esito;		         /* Lavoro: Controllo del numero primo           */
     int *primi;		         /* Output: Sequenza dei numeri primi		     */
-	int successive[10];	     /* Output: Sequenze generate successivamente	 */
+	int *successive;	     /* Output: Sequenze generate successivamente	 */
 
 	/* Richiesta del numero di sequenze da generare all'utente */
 	do
@@ -125,9 +125,10 @@ void gilbreath()
 	}
 	while(acquisizione_errata);
 
-    /* Allocazione dell'array dinamico */
+    /* Allocazione degli array */
     dim = 10 + n;
     primi = malloc(dim*sizeof(int));
+    successive = malloc(dim*sizeof(int));
     
     /* Calcolo delle sequenze */
 	for (i = 0; i <= n; i++) 
