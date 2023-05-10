@@ -1,7 +1,7 @@
 /************************************************************************/
 /*  ESAME DI PROGRAMMAZIONE PROCEDURALE - SESSIONE ESTIVA 2023          */					   
 /*                                                                      */					   
-/* Programma che, in base alla scelta eseguita dall'utente, 	        */
+/* Programma che, in base alla scelta espressa dall'utente, 	        */
 /* esegue le congetture di Gilbreath, debole di Goldbach e Legendre.    */
 /*                                                                      */                                   
 /* Autori:  Biagi Alessio (Matricola: 322735)                           */
