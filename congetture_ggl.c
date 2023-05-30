@@ -278,7 +278,7 @@ void legendre(void)
     succquadr = pow((n+1), 2);
     
     /* Ricerca del numero compreso tra n ed il suo successivo */
-    for(i = quadrato+1; esito != 0; i++)
+    for(i = quadrato+1; esito == 0; i++)
     {
         /* Invocazione della funzione per i numeri primi */
         esito = numprim(i);
