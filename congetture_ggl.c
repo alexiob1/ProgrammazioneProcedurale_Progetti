@@ -85,7 +85,7 @@ int selezione()
 	              		      &scelta);
         
         	/* Validazione stretta del valore inserito */
-		acquisizione_errata = esito_lettura = scelta > 3||scelta <= 0;
+		acquisizione_errata = esito_lettura = scelta > 3 || scelta <= 0;
 		if (acquisizione_errata)
 			printf("Il valore inserito non è valido\n");
 		while(getchar() != '\n');
