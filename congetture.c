@@ -18,7 +18,7 @@
 /********************************/
 /* Dichiarazione delle funzioni */
 /********************************/
-int selezione(void);
+int selezione();
 void gilbreath(void);
 void goldbach(void);
 void legendre(void);
@@ -31,36 +31,13 @@ int numprim(int);
 /* Definizione della funzione main */
 int main()
 {
+	/*Dichiarazione delle variabili globali*/
+	int congettura;
+
 	/*Richiamo della funzione di selezione*/
-	selezione();
+	congettura = selezione();
 
-return(0);
-}
-
-int selezione(void)
-{
-	int esito_lettura, 
-	    acquisizione_errata,
-	    scelta;
-
-	do
-	{
-		printf("Quale congettura vuoi verificare?\n"
-		"1. Congettura di Gilbreath\n"
-		"2. Congettura debole di Goldbach\n"
-		"3. Congettura di Legendre\n"
-		"Inserisci il numero della congettura\n");
-		esito_lettura = scanf("%d",
-	              		      &scelta);
-
-		acquisizione_errata=esito_lettura=scelta>3||scelta<=0;
-		if (acquisizione_errata)
-			printf("Il valore inserito non è valido\n");
-		while(getchar() != '\n');
-	}
-	while(acquisizione_errata);
-
-	switch(scelta)
+	switch(congettura)
 	{
 		case 1:
 		{
@@ -82,6 +59,33 @@ int selezione(void)
 	}
 
 return(0);
+}
+
+int selezione()
+{
+	/*Dichiarazione delle variabili globali*/
+	int esito_lettura, 
+	    acquisizione_errata,
+	    scelta;
+
+	do
+	{
+		printf("Quale congettura vuoi verificare?\n"
+		"1. Congettura di Gilbreath\n"
+		"2. Congettura debole di Goldbach\n"
+		"3. Congettura di Legendre\n"
+		"Inserisci il numero della congettura\n");
+		esito_lettura = scanf("%d",
+	              		      &scelta);
+
+		acquisizione_errata=esito_lettura=scelta>3||scelta<=0;
+		if (acquisizione_errata)
+			printf("Il valore inserito non è valido\n");
+		while(getchar() != '\n');
+	}
+	while(acquisizione_errata);
+
+return(scelta);
 }
 
 void gilbreath(void)
