@@ -1,5 +1,6 @@
 # Makefile #
-congetture_ggl: congetture_ggl.c Makefile
+
+congetture: congetture.c Makefile
 	gcc -ansi -Wall -O congetture.c -o congetture -lm
 
 pulisci:
@@ -7,4 +8,3 @@ pulisci:
 
 pulisci_tutto:
 	rm -f congetture congetture.o
-
