@@ -55,13 +55,14 @@ int main()
 	    giorno_pasqua[2],	/* Lavoro: array contenente i due giorni della Pasqua per i due anni inseriti */
 	    mese_pasqua[2], 	/* Lavoro: array contenente i due mesi della Pasqua per i due anni inseriti */
 	    giorno_grasso[2],	/* Output: array contenente i giorni del Martedì (0) e Giovedì (1) Grasso */
-	    mese_grasso[2];	/* Output: array contenente i mesi del Martedì (0) e Giovedì (1) Grasso */
+	    mese_grasso[2],	/* Output: array contenente i mesi del Martedì (0) e Giovedì (1) Grasso */
+    	    i;			/* Lavoro: contatore per i cicli for */	    
 
 	/* Acquisizione dei due anni */
 	acquisizione_anno(anno);
 
 	/* Ciclo per il calcolo della data della Pasqua per i due anni inseriti */
-	for(int i = 0; i < 2; i++)
+	for(i = 0; i < 2; i++)
 	{
 		calcolo_pasqua(anno[i],
 			       &giorno_pasqua[i], 
@@ -69,7 +70,7 @@ int main()
 	}
 
 	/* Ciclo per il calcolo della data del Martedì Grasso e del Giovedì Grasso */
-	for(int i = 0; i < 2; i++)
+	for(i = 0; i < 2; i++)
 	{
 		giorno_grasso[i] = giorno_pasqua[i];
 		mese_grasso[i] = mese_pasqua[i];
@@ -81,13 +82,15 @@ int main()
 	}
 
 	/* Ciclo per la stampa dei risultati */
-	for(int i = 0; i < 2; i++)
+	for(i = 0; i < 2; i++)
 	{
 		stampa_risultato(giorno_grasso[i], 
 				 mese_grasso[i], 
 				 anno[i], 
 				 i);
-	}	   
+	}
+
+return(0);
 }
 
 /* Definizione della funzione per l'acquisizione dei due anni */
@@ -95,18 +98,19 @@ void acquisizione_anno(int anno[]) /* Input / output: array in cui memorizzare i
 {
 	/* Dichiarazione delle variabili locali */
 	int esito_lettura, 	 /* Lavoro: esito della scanf */
-	    acquisizione_errata; /* Lavoro: esito complessivo della scanf */
+	    acquisizione_errata, /* Lavoro: esito complessivo della scanf */
+	    i;			 /* Lavoro: contatore per il ciclo for */
 
 	/* Stampa della specifica del programma all'utente */
 	printf("Il programma, previo inserimento di due anni tra il 1900 e il 2099, \n"
-	       "calcola il Martedì Grasso per il primo anno e il Giovedì Grasso per il secondo.");
+	       "calcola il Martedì Grasso per il primo anno e il Giovedì Grasso per il secondo.\n");
 
 	/* Ciclo per acquisire gli anni */
-	for(int i = 0; i < 2; i++)
+	for(i = 0; i < 2; i++)
 	{
 		do
 		{
-			printf("\nInserisci l'anno per il calcolo del %s (compreso tra il 1900 e il 2099):",
+			printf("\nInserisci l'anno per il calcolo del %s (compreso tra il 1900 e il 2099): ",
 			       (i == 0)? "Martedì Grasso" : "Giovedì Grasso");
 
 			/* Acquisizione e validazione stretta */
@@ -259,10 +263,10 @@ void stampa_risultato(int giorno,	      /* Input: giorno del Martedì / Giovedì
 	
 	/* Stampa del Martedì / Giovedì Grasso */
 	if(tipo_giorno_grasso == 0)
-		printf("\nIl Martedì Grasso nell'anno %d cade nel giorno:\n",
+		printf("\nIl Martedì Grasso nell'anno %d cade nel giorno:\n\n",
 		       anno);
 	else
-		printf("\nIl Giovedì Grasso nell'anno %d cade nel giorno:\n",
+		printf("\nIl Giovedì Grasso nell'anno %d cade nel giorno:\n\n",
 		       anno);
 	
 	/* Estrazione delle cifre del giorno */
@@ -298,7 +302,8 @@ void stampa_risultato(int giorno,	      /* Input: giorno del Martedì / Giovedì
 	for (v = 0; v < 5; v++) 
 	{
 		for (o = 0; o < 6; o++)
-		       	stampa_riga_carattere(contenitore[o], v);
+		       	stampa_riga_carattere(contenitore[o], 
+					      v);
 		printf("\n");
 	}
 }
