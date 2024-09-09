@@ -123,7 +123,7 @@ void acquisizione_anno(int anno[]) /* Input / output: array in cui memorizzare i
 	}
 }
 
-/* Definizione della funzione per il calcolo del giorno e mese di Pasqua, usando il metodo di Gauss */
+/* Definizione della funzione per il calcolo del giorno e del mese di Pasqua, usando il metodo di Gauss */
 void calcolo_pasqua(int  anno,	 /* Input:  anno inserito dall'utente */
 		    int *giorno, /* Output: giorno di Pasqua */
 		    int *mese)   /* Output: mese di Pasqua */
